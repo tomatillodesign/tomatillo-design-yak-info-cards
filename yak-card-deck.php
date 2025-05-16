@@ -733,7 +733,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'default_value' => '',
                         'tabs' => 'all',
                         'toolbar' => 'basic',
-                        'media_upload' => 0,
+                        'media_upload' => 1,
                         'delay' => 0,
                         'parent_repeater' => 'field_637e2751859e3',
                     ),
