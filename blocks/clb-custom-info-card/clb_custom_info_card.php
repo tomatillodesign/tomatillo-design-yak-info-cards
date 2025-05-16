@@ -298,26 +298,37 @@ if( have_rows('td_info_cards_repeater') ) {
 
         
 
-        if( $card_is_modal ) {
-        $modals_to_publish .= '<!-- Modal -->
-                                <div class="modal fade clb-yak-modal" id="yak-modal-' . $modal_ref . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title clb-yak-modal-title" id="yak-modal-' . $modal_ref . '">' . $card_heading . '</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">x</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ' . $modal_description_to_publish . '
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Close</button>
-                                    </div>
-                                    </div>
+        if ( $card_is_modal ) {
+            $modal_id       = 'yak-modal-' . esc_attr( $modal_ref );
+            $modal_label_id = 'yak-modal-title-' . esc_attr( $modal_ref );
+
+            $modals_to_publish .= '
+                <div class="clb-move-modals">
+                    <div id="' . $modal_id . '" class="yak-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="' . $modal_label_id . '" aria-hidden="true" inert>
+                        <div class="yak-modal-dialog modal-dialog" role="document">
+                            <div class="yak-modal-content modal-content">
+
+                                <div class="yak-modal-header modal-header">
+                                    <h5 class="yak-modal-title modal-title" id="' . $modal_label_id . '">' . esc_html( $card_heading ) . '</h5>
+                                    <button type="button" class="yak-modal-close close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
                                 </div>
-                                </div>';
+
+                                <div class="yak-modal-body modal-body">
+                                    ' . wp_kses_post( $modal_description_to_publish ) . '
+                                </div>
+
+                                <div class="yak-modal-footer modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>';
         }
-    
+
     }
     
 }
