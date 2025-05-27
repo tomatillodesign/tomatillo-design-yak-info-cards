@@ -44,13 +44,28 @@ function yak_render_card( array $card, array $settings = [] ): string {
 				'settings' => $settings,
 			] );
 		case 'photo':
-			// return yak_load_card_template( 'render-card-photo.php', [ ... ]);
+			return yak_info_cards_load_template( 'render-card-photo.php', [
+				...$card,
+				'settings' => $settings,
+			] );
 			break;
 		case 'cover':
-			// return yak_load_card_template( 'render-card-cover.php', [ ... ]);
+			return yak_info_cards_load_template( 'render-card-cover.php', [
+				...$card,
+				'settings' => $settings,
+			] );
 			break;
+        case 'text':
+            return yak_info_cards_load_template( 'render-card-text.php', [
+                ...$card,
+                'settings' => $settings,
+            ] );
+            break;
 		case 'video':
-			// return yak_load_card_template( 'render-card-video.php', [ ... ]);
+			return yak_info_cards_load_template( 'render-card-video.php', [
+                ...$card,
+                'settings' => $settings,
+            ] );
 			break;
 	}
 

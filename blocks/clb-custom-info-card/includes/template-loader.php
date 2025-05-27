@@ -32,6 +32,8 @@ function yak_info_cards_load_template( string $filename, array $data = [] ): str
 require_once __DIR__ . '/get-card-data.php';
 require_once __DIR__ . '/get-card-group-attributes.php';
 require_once __DIR__ . '/card-partials.php'; // Subheading, Description, Button
+require_once __DIR__ . '/helpers/render-wrapper.php'; // wrapper, incl action logic
+require_once __DIR__ . '/helpers/render-modal.php'; // modal markup
 
 // -----------------------------------------------------------------------------
 // 🧱 Template Renderers (main + card types)

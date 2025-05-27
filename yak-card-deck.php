@@ -456,7 +456,15 @@ if( function_exists('acf_add_local_field_group') ):
                         'type' => 'button_group',
                         'instructions' => 'Modal and Collapse cards will display the "Description" field upon clicking.',
                         'required' => 0,
-                        'conditional_logic' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field'    => 'field_td_info_cards_number_of_columns', // replace with actual field key
+                                    'operator' => '==',
+                                    'value'    => '1',
+                                ),
+                            ),
+                        ),
                         'wrapper' => array(
                             'width' => '',
                             'class' => '',
@@ -1159,5 +1167,6 @@ function lumdiff2222023411($R1,$G1,$B1,$R2,$G2,$B2){
 
         return $hsl;
     }
+
 
 

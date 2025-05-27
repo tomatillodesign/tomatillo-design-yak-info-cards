@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Icon Card Template (Wrapped)
+ * Photo Card Template (Wrapped)
  *
  * Expected $data includes:
  * - heading
  * - subheading
  * - description
+ * - image_id
  * - link_url
  * - button_text
- * - icon_style (e.g. fa-regular)
- * - icon_type (e.g. duotone, sharp)
- * - icon_name (e.g. fa-lightbulb)
  * - type
  * - settings (array of group-level settings)
  */
@@ -18,27 +17,33 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $settings     = $data['settings'] ?? [];
-$type         = $type ?? 'icon';
+$type         = $type ?? 'photo';
 
 $heading      = $data['heading'] ?? '';
 $subheading   = $data['subheading'] ?? '';
 $description  = $data['description'] ?? '';
 $button_text  = $data['button_text'] ?? '';
 $link_url     = $data['link_url'] ?? '';
-$icon_style   = $data['icon_style'] ?? '';
-$icon_type    = $data['icon_type'] ?? '';
-$icon_name    = ! empty( $data['icon_name'] ) ? $data['icon_name'] : 'info-circle';
-$icon_size    = $settings['td_info_cards_icon_size'] ?? 'fa-4x';
+$image_id     = $data['image_id'] ?? 0;
+
+// Fallback image output
+$image_html = '';
+if ( $image_id ) {
+	$image_html = wp_get_attachment_image( $image_id, 'large', false, [
+		'class' => 'yak-info-cards-photo-img',
+		'alt'   => esc_attr( $heading ),
+	] );
+}
 
 // Inner card content (HTML only — will be wrapped next)
 ob_start();
 ?>
-	<div class="yak-card yak-info-cards-type-icon">
-		<div class="yak-info-cards-icon-wrapper">
-			<i class="<?php
-				echo esc_attr( 'fa-' . $icon_type . ' ' . $icon_style . ' fa-' . $icon_name . ' ' . $icon_size );
-			?>"></i>
-		</div>
+	<div class="yak-card yak-info-cards-type-photo">
+		<?php if ( $image_html ) : ?>
+			<div class="yak-info-cards-photo-wrapper">
+				<?php echo $image_html; ?>
+			</div>
+		<?php endif; ?>
 
 		<?php echo yak_info_cards_render_heading( $heading, $settings ); ?>
 		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
@@ -56,6 +61,3 @@ $card_html = ob_get_clean();
 $uid = uniqid( 'yak-card-' );
 echo yak_info_cards_render_wrapper( $card_html, $data, $settings, $uid );
 echo yak_info_cards_render_modal( $data, $settings, $uid );
-
-
-

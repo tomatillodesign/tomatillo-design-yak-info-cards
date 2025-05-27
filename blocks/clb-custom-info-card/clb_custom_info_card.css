@@ -1,363 +1,97 @@
 @layer components {
 
-.clb-custom-info-card-area-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-
-    container-type: inline-size;
-    container-name: infoCardWrapperWidth;
-}
-
-.clb-info-card-outer-wrapper {
-    height: 100%;
-}
-
-.clb-single-column-layout-horizontal .clb-single-info-card-body-wrapper {
-	padding-left: 0;
-}
-
-.clb-single-column-layout-horizontal .clb-single-info-card-button-wrapper {
-	padding: 0;
-}
-
-.clb-single-info-card-wrapper {
-    background: var(--yak-white, #fff);
-    border-radius: var(--yak-radius, 3px);
-    box-shadow: var(--yak-box-shadow-light, 0 0 20px rgba(0,0,0,.1));
-    will-change: transform;
-    transition: all ease-in-out .25s;
-    z-index: 100;
-    position: relative;
-    height: 100%;
-}
-
-.entry-content .clb-single-info-card-wrapper a {
-    text-decoration: none;
-}
-
-.clb-single-info-card-wrapper.clb-info-card-is-collapse {
-    height: auto;
-}
-
-.clb-single-info-card-wrapper:hover {
-    -webkit-transform: translate3d(0, -4px, 0);
-    transform: translate3d(0, -4px, 0);
-}
-
-.clb-single-info-card-wrapper.clb-info-card-is-collapse:hover {
-    -webkit-transform: none;
-    transform: none;
-}
-
-.clb-single-info-card-wrapper.clb-info-card-missing-link:hover {
-    transform: none;
-}
-
-.clb-single-info-card-body-wrapper {
-    padding: 20px;
-}
-
-.clb-single-info-card-image-wrapper img {
-    border-top-left-radius: var(--yak-radius, 3px);
-    border-top-right-radius: var(--yak-radius, 3px);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    object-fit: cover;
-    width: 100%;
-}
-
-.clb-single-info-card-button-wrapper button {
-    border-radius: var(--yak-radius, 3px);
-}
-
-/* ---- Enforce aspect ratios ---- */
-
-.clb-info-cards-aspect-ratio-11 .clb-single-info-card-image-wrapper img { aspect-ratio: 1 / 1; }
-.clb-info-cards-aspect-ratio-32 .clb-single-info-card-image-wrapper img { aspect-ratio: 3 / 2; }
-.clb-info-cards-aspect-ratio-43 .clb-single-info-card-image-wrapper img { aspect-ratio: 4 / 3; }
-.clb-info-cards-aspect-ratio-169 .clb-single-info-card-image-wrapper img { aspect-ratio: 16 / 9; }
-.clb-info-cards-aspect-ratio-23 .clb-single-info-card-image-wrapper img { aspect-ratio: 2 / 3; }
-.clb-info-cards-aspect-ratio-34 .clb-single-info-card-image-wrapper img { aspect-ratio: 3 / 4; }
-
-/* ------------------- */
-
-.clb-info-cards-include-buttons .clb-single-info-card-button-flex-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.clb-single-info-card-button-wrapper {
-    padding: 0 20px 20px;
-    margin-top: auto;
-}
-
-button.clb-single-info-card-cta-button {
-    width: 100%;
-    text-align: center;
-}
-
-.clb-info-cards-override-card-button-foreground-color button.clb-single-info-card-cta-button a {
-    color: var(--yak-card-button-text-color, #fff);
-}
-
-.clb-info-cards-override-card-button-foreground-color button.clb-single-info-card-cta-button:hover a {
-    color: var(--yak-white, #fff);
-}
-
-.clb-info-cards-override-button-background-color button.clb-single-info-card-cta-button:hover {
-    background: var(--yak-black, #222) !important;
-    /* color: var(--yak-white) !important; */
-}
-
-.clb-single-info-card-body-wrapper h3.clb-single-info-card-heading {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 0;
-    line-height: 1.2;
-    text-align: center;
-}
-
-.clb-single-info-card-heading a {
-    text-decoration: none;
-    color: var(--yak-black);
-}
-
-.clb-single-info-card-heading a:hover {
-    text-decoration: none;
-    color: var(--yak-primary-color);
-}
-
-.clb-single-info-card-subheading {
-    opacity: .65;
-    text-transform: uppercase;
-    margin-top: 8px;
-    text-align: center;
-    line-height: 1.2;
-}
-
-.clb-single-info-card-description-wrapper {
-    margin-top: 20px;
-}
-
-.clb-single-info-card-icon-wrapper {
-    text-align: center;
-    padding-top: 30px;
-}
-
-.clb-info-card-type-icon .clb-single-info-card-button-flex-wrapper > a {
-    color: var(--yak-black, #222);
-}
-
-.clb-info-cards-override-card-background-color .clb-single-info-card-heading a,
-.clb-info-cards-override-card-background-color h3.clb-single-info-card-heading,
-.clb-info-cards-override-card-background-color .clb-single-info-card-heading a:hover,
-.clb-info-cards-override-card-background-color .clb-single-info-card-description-wrapper,
-.clb-info-cards-override-card-background-color .clb-single-info-card-subheading,
-.clb-info-cards-override-card-background-color.clb-info-card-type-icon .clb-single-info-card-button-flex-wrapper > a {  
-    color: var(--yak-card-body-color, #222);
-}
-
-.modal .clb-single-info-card-description-wrapper {
-    margin-top: 0;
-}
-
-.clb-single-info-card-description-wrapper p:last-of-type {
-    margin-bottom: 0;
-}
-
-.clb-collapsible-wrapper {
-    padding: 20px;
-    background: var(--yak-white, #fff);
-    border-radius: var(--yak-radius, 3px);
-    box-shadow: var(--yak-box-shadow-light, 0 0 20px rgba(0,0,0,.1));
-    will-change: transform;
-    transition: all ease-in-out .5s;
-    margin-top: 0;
-    z-index: 10;
-    max-height: fit-content;
-    overflow: hidden;
-    padding: 20px;
-    transform-origin: top left;
-}
-
-.clb-collapsible-wrapper p:last-of-type {
-    margin-bottom: 0;
-}
-
-.clb-collapsible-wrapper.collapsed {
-    padding-top: 0;
-    padding-bottom: 0;
-    max-height: 0;
-    transform: scaleY(0);
-    overflow-y: hidden;
-}
-
-.clb-collapsible-wrapper.open {
-    
-}
-
-/* --- New COVER Styling --- */
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-image-wrapper {
-    position: relative;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-cover-layer {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,1);
-    opacity: .65;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--yak-radius);
-    z-index: 10;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-image-wrapper img {
-    border-radius: var(--yak-radius);
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-body-wrapper {
-    position: absolute;
-    top: 0;
-    padding: 20px;
-    z-index: 100;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-button-wrapper {
-    position: absolute;
-    bottom: 0;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 100;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper,
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-subheading,
-.clb-info-card-type-cover .clb-single-info-card-wrapper h3.clb-single-info-card-heading a {
-    color: var(--yak-white);
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-subheading {
-    text-transform: none;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-button-wrapper button.clb-single-info-card-cta-button {
-    background: transparent;
-    background: rgba(255,255,255,.2);
-    backdrop-filter: blur(8px);
-    border: 2px solid var(--yak-white);
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-button-wrapper button.clb-single-info-card-cta-button:hover {
-    background: var(--yak-white);
-    color: var(--yak-black);
-    border: 2px solid var(--yak-white);
-}
-
-.clb-info-card-type-cover .clb-single-info-card-wrapper .clb-single-info-card-button-wrapper button.clb-single-info-card-cta-button:hover a {
-    color: var(--yak-black);
-}
-
-.clb-info-card-type-cover.clb-info-cards-no-buttons .clb-single-info-card-body-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
-
-.clb-info-card-type-cover .clb-single-info-card-cta-button a {
-	color: var(--yak-white);
-}
-
-.clb-info-card-type-cover .clb-single-info-card-subheading {
-	line-height: 1.4;
-}
-
-/* ------------------------- */
-
-
-/* --- CSS Container Query --- */
-@container infoCardWrapperWidth (min-width: 600px) {
-    
-    .clb-single-column-layout-horizontal .clb-single-info-card-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 30px;
-    }
-
-    .clb-single-column-layout-horizontal .clb-single-info-card-image-wrapper {
-        height: 100%;
-    }
-
-    .clb-single-column-layout-horizontal .clb-single-info-card-image-wrapper img {
-        height: 100% !important;
-        object-fit: cover;
-        border-radius: 0;
-        border-top-left-radius: var(--yak-radius, 3px);
-        border-bottom-left-radius: var(--yak-radius, 3px);
-    }
-
-    .clb-single-column-layout-horizontal .clb-single-info-card-body-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-}
-
-
-
-@media only screen and (min-width: 960px) { 
-
-    .clb-custom-info-card-area-wrapper.clb-columns-1 {
-        grid-template-columns: 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-2 {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-3 {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-4 {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-5 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-6 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    }
-
-}
-
-@media only screen and (max-width: 960px) and (min-width: 580px) {
-
     .clb-custom-info-card-area-wrapper {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .clb-custom-info-card-area-wrapper.clb-columns-1 {
+        display: grid;
         grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+
+        container-type: inline-size;
+        container-name: infoCardWrapperWidth;
     }
 
-  }
+    .yak-card {
+        box-shadow: 0 0 12px rgba(0,0,0,.1);
+        border-radius: var(--yak-radius, 3px);
+    }
+
+    .yak-info-cards-action-modal:hover {
+        cursor: pointer;
+    }
+
+    /* === Yak Info Cards – Modal Styles === */
+
+    .yak-info-card-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease;
+    }
+
+    /* When visible */
+    .yak-info-card-modal.show {
+        display: flex;
+        opacity: 1;
+    }
+
+    /* Modal inner container */
+    .yak-info-card-modal .yak-modal-content {
+        background: var(--yak-color-white, #fff);
+        border-radius: var(--yak-radius, 6px);
+        max-width: 720px;
+        width: 100%;
+        position: relative;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
+        animation: yak-info-card-fade-in 0.3s ease-out;
+    }
+
+    .yak-info-card-modal .yak-modal-body p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .yak-info-card-modal .modal-footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-top: 1px solid #dee2e6;
+        padding: 1rem 2rem;
+    }
+
+    .yak-info-card-modal .modal-footer button {
+        margin-left: auto;
+    }
+
+    /* Close button */
+    .yak-info-card-modal .yak-modal-close {
+        /* position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.2s ease; */
+    }
+
+    .yak-info-card-modal .yak-modal-close:hover {
+        opacity: 1;
+    }
+
+    /* Fade animation */
+    @keyframes yak-info-card-fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 
 }
