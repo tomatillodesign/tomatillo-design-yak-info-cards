@@ -391,6 +391,21 @@ if( function_exists('acf_add_local_field_group') ):
                         'ajax' => 0,
                         'placeholder' => '',
                     ),
+                    array(
+                        'key' => 'td_info_cards_heading_level',
+                        'label' => 'Heading Level for Card Titles',
+                        'name' => 'td_info_cards_heading_level',
+                        'type' => 'select',
+                        'instructions' => 'Controls the HTML heading level for card titles (for accessibility and semantic structure).',
+                        'choices' => [
+                            'h2' => 'H2',
+                            'h3' => 'H3 (recommended default)',
+                            'h4' => 'H4',
+                        ],
+                        'default_value' => 'h3',
+                        'return_format' => 'value',
+                        'ui' => 1,
+                    ),
                 ),
             ),
             array(
