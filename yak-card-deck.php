@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Tomatillo Design ~ Yak Card Deck
-Description: Custom block for displaying cards in a grid/deck layout.
+Plugin Name: Tomatillo Design ~ Info Cards
+Description: Custom block for displaying cards in a grid/deck layout. Yak theme-ready.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
-Version: 1.0.0
+Version: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -21,28 +21,41 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 //
 
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
 }
 
-// Check if ACF PRO is active
-function custom_plugin_check_acf_pro() {
-    if (!class_exists('ACF') || !function_exists('acf_get_setting') || !acf_get_setting('pro')) {
-        add_action('admin_notices', 'custom_plugin_acf_pro_admin_notice');
-        deactivate_plugins(plugin_basename(__FILE__)); // Deactivate the plugin
-    }
+// Gracefully check if ACF PRO is active
+function yak_info_cards_check_acf_pro() {
+	if (
+		! class_exists( 'ACF' ) ||
+		! function_exists( 'acf_get_setting' ) ||
+		! acf_get_setting( 'pro' )
+	) {
+		add_action( 'admin_notices', 'yak_info_cards_show_acf_pro_notice' );
+
+		// Only deactivate if safe context
+		if (
+			is_admin() &&
+			current_user_can( 'activate_plugins' ) &&
+			! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) &&
+			! ( defined( 'WP_CLI' ) && WP_CLI )
+		) {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+	}
 }
 
-// Display an admin notice
-function custom_plugin_acf_pro_admin_notice() {
-    echo '<div class="notice notice-error"><p><strong>Tomatillo Design ~ Yak Card Deck:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank">ACF PRO</a> to be installed and activated.</p></div>';
+// Show admin notice about missing ACF PRO
+function yak_info_cards_show_acf_pro_notice() {
+	echo '<div class="notice notice-error"><p><strong>Tomatillo Design ~ Info Cards:</strong> This plugin requires <a href="https://www.advancedcustomfields.com/pro/" target="_blank" rel="noopener noreferrer">ACF PRO</a> to be installed and activated. The plugin has been deactivated.</p></div>';
 }
 
-// Run the check on activation
-register_activation_hook(__FILE__, 'custom_plugin_check_acf_pro');
+// Check on plugin load (admin only)
+add_action( 'admin_init', 'yak_info_cards_check_acf_pro' );
 
-// Run the check on admin init
-add_action('admin_init', 'custom_plugin_check_acf_pro');
+// Also check at activation
+register_activation_hook( __FILE__, 'yak_info_cards_check_acf_pro' );
 
 
 
