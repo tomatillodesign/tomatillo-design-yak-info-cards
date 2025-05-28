@@ -1,5 +1,40 @@
 @layer components {
 
+    .yak-info-cards-group {
+        display: grid;
+        gap: 2rem;
+    }
+
+    /* Exact column count modifiers */
+    .yak-info-cards-cols-1 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .yak-info-cards-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .yak-info-cards-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .yak-info-cards-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .yak-info-cards-cols-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .yak-info-cards-cols-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .alignfull.yak-info-cards-group {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
     .clb-custom-info-card-area-wrapper {
         display: grid;
         grid-template-columns: 1fr;
@@ -15,10 +50,218 @@
         border-radius: var(--yak-radius, 3px);
     }
 
+    .yak-card-contents-wrapper {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .yak-card-contents-wrapper h2,
+    .yak-card-contents-wrapper h3,
+    .yak-card-contents-wrapper h4,
+    .yak-info-cards-cover-inner h2,
+    .yak-info-cards-cover-inner h3,
+    .yak-info-cards-cover-inner h4 {
+        margin: 0;
+    }
+
+    .yak-info-cards-heading,
+    .yak-info-cards-subheading,
+    .yak-info-cards-description {
+        hyphens: auto;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .yak-single-info-card-outer-wrapper a,
+    .yak-card-contents-wrapper,
+    .yak-card-contents-wrapper a {
+        color: var(--yak-color-black);
+        text-decoration: none;
+    }
+
     .yak-info-cards-action-modal:hover {
         cursor: pointer;
     }
 
+    .yak-info-cards-heading {
+        text-align: center;
+    }
+
+    .yak-info-cards-description,
+    .yak-info-cards-description p {
+        font-size: var(--yak-font-sm);
+    }
+
+    .yak-info-cards-subheading {
+        text-transform: uppercase;
+        font-size: var(--yak-font-md);
+        opacity: 0.67;
+        text-align: center;
+        line-height: var(--yak-lh-lg);
+    }
+
+    .yak-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .yak-single-info-card-outer-wrapper a .yak-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .yak-info-cards-photo-img {
+        transition: filter 0.3s ease;
+    }
+
+    [data-yak-modal] .yak-card:hover .yak-info-cards-photo-img,
+    .yak-single-info-card-outer-wrapper a .yak-card:hover .yak-info-cards-photo-img {
+        filter: brightness(0.80) contrast(1.15) saturate(1.2);
+    }
+
+    /* Shared base wrapper styles */
+    .yak-info-cards-photo-wrapper,
+    .yak-info-cards-cover-bg-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        width: 100%;
+    }
+
+    /* Images fill container with object-fit */
+    .yak-info-cards-photo-img,
+    .yak-info-cards-cover-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* .yak-info-cards-aspect-original .yak-info-cards-photo-img,
+    .yak-info-cards-aspect-original .yak-info-cards-cover-img {
+        position: relative;
+    } */
+
+    /* Aspect ratios */
+    .yak-info-cards-aspect-11 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-11 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 1 / 1;
+    }
+
+    .yak-info-cards-aspect-32 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-32 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 3 / 2;
+    }
+
+    .yak-info-cards-aspect-43 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-43 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 4 / 3;
+    }
+
+    .yak-info-cards-aspect-169 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-169 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 16 / 9;
+    }
+
+    .yak-info-cards-aspect-23 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-23 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 2 / 3;
+    }
+
+    .yak-info-cards-aspect-34 .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-34 .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: 3 / 4;
+    }
+
+    /* "Original" = no aspect ratio enforcement */
+    .yak-info-cards-aspect-original .yak-info-cards-photo-wrapper,
+    .yak-info-cards-aspect-original .yak-info-cards-cover-bg-wrapper {
+        aspect-ratio: auto;
+        position: static;
+    }
+
+    .yak-info-cards-aspect-original .yak-info-cards-photo-img,
+    .yak-info-cards-aspect-original .yak-info-cards-cover-img {
+        position: static;
+        width: auto;
+        height: auto;
+        object-fit: unset;
+    }
+
+    /* === Yak Info Cards – Photo Card === */
+    
+    .yak-card.yak-info-cards-type-photo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .yak-info-cards-type-photo .yak-info-cards-photo-wrapper img {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    /* === Yak Info Cards – Icon Card === */
+    .yak-info-cards-type-icon .yak-card {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .yak-info-cards-type-icon .yak-card .yak-card-contents-wrapper {
+        padding: 0;
+    }
+
+    .yak-info-cards-type-icon .yak-card .yak-info-cards-icon-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    
+    [data-yak-modal] .yak-card:hover,
+    .yak-single-info-card-outer-wrapper a .yak-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+
+    /* === Yak Info Cards – Cover Card === */
+    .yak-card.yak-info-cards-type-cover {
+        position: relative;
+    }
+
+    .yak-card.yak-info-cards-type-cover .yak-info-cards-overlay {
+        border-radius: var(--yak-radius);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--yak-color-black);
+    }
+
+    .yak-info-cards-cover-inner {
+        color: var(--yak-color-white);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .yak-card.yak-info-cards-type-cover .yak-info-cards-subheading {
+        opacity: 1;
+    }
+
+    
     /* === Yak Info Cards – Modal Styles === */
 
     .yak-info-card-modal {
@@ -62,19 +305,6 @@
 
     .yak-info-card-modal .modal-footer button {
         margin-left: auto;
-    }
-
-    /* Close button */
-    .yak-info-card-modal .yak-modal-close {
-        /* position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: #666;
-        cursor: pointer;
-        transition: color 0.2s ease; */
     }
 
     .yak-info-card-modal .yak-modal-close:hover {

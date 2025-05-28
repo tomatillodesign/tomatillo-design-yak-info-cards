@@ -25,7 +25,8 @@ $description    = $data['description'] ?? '';
 $button_text    = $data['button_text'] ?? '';
 $link_url       = $data['link_url'] ?? '';
 $image_id       = $data['image_id'] ?? 0;
-$overlay_opacity = isset( $data['overlay_opacity'] ) ? floatval( $data['overlay_opacity'] ) : 0.4;
+$overlay_opacity_raw = isset( $data['cover_opacity'] ) ? floatval( $data['cover_opacity'] ) : 40;
+$overlay_opacity = $overlay_opacity_raw / 100;
 
 // Fallback image output
 $image_html = '';
@@ -68,3 +69,5 @@ $card_html = ob_get_clean();
 $uid = uniqid( 'yak-card-' );
 echo yak_info_cards_render_wrapper( $card_html, $data, $settings, $uid );
 echo yak_info_cards_render_modal( $data, $settings, $uid );
+
+?>

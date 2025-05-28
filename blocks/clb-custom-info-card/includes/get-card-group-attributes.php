@@ -41,6 +41,9 @@ function yak_info_cards_get_group_attributes( array $settings ): array {
 		$ratio = sanitize_html_class( $settings['td_info_cards_aspect_ratio'] );
 		$classes[] = 'yak-info-cards-aspect-' . $ratio;
 		$data['yak-info-cards-aspect'] = $ratio;
+	} elseif ( $settings['td_info_cards_aspect_ratio'] == 0 ) {
+		$classes[] = 'yak-info-cards-aspect-original';
+		$data['yak-info-cards-aspect'] = 'original';
 	}
 
 	// Heading level

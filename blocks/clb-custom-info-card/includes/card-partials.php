@@ -21,7 +21,7 @@ function yak_info_cards_render_subheading( $subheading, array $settings ): strin
 		return '';
 	}
 
-	return '<p class="yak-info-cards-subheading">' . esc_html( $subheading ) . '</p>';
+	return '<div class="yak-info-cards-subheading">' . esc_html( $subheading ) . '</div>';
 }
 
 function yak_info_cards_render_description( $description, array $settings ): string {

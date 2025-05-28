@@ -34,12 +34,14 @@ $icon_size    = $settings['td_info_cards_icon_size'] ?? 'fa-4x';
 ob_start();
 ?>
 	<div class="yak-card yak-info-cards-type-icon">
-		<div class="yak-info-cards-icon-wrapper">
+		
+	<div class="yak-info-cards-icon-wrapper">
 			<i class="<?php
 				echo esc_attr( 'fa-' . $icon_type . ' ' . $icon_style . ' fa-' . $icon_name . ' ' . $icon_size );
 			?>"></i>
 		</div>
 
+		<div class="yak-card-contents-wrapper">
 		<?php echo yak_info_cards_render_heading( $heading, $settings ); ?>
 		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
 		<?php echo yak_info_cards_render_description( $description, $settings ); ?>
@@ -48,6 +50,7 @@ ob_start();
 			'button_text' => $button_text,
 			'link_url'    => $link_url,
 		], $settings ); ?>
+		</div>
 	</div>
 <?php
 $card_html = ob_get_clean();

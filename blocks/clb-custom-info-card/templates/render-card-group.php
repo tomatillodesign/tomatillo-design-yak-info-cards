@@ -11,8 +11,14 @@ function yak_render_card_group_block( array $block ): string {
 	// Get class + data-* attributes
 	$attrs       = yak_info_cards_get_group_attributes( $settings );
 	$class_attr  = esc_attr( $attrs['class'] );
-	$data_attrs  = '';
 
+	// Append align class if present
+	if ( ! empty( $block['align'] ) ) {
+		$attrs['class'] .= ' align' . $block['align'];
+	}
+	$class_attr = esc_attr( $attrs['class'] );
+
+	$data_attrs  = '';
 	foreach ( $attrs['data'] as $key => $value ) {
 		$data_attrs .= ' data-' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
 	}
