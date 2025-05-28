@@ -35,7 +35,22 @@ function yak_info_cards_render_button( array $data, array $settings ): string {
 
 	if( !$settings['td_info_cards_include_button'] || !$data['button_text'] ) { return ''; }
 
+	$style = '';
+	if (
+		! empty( $settings['td_info_cards_button_background'] ) &&
+		is_array( $settings['td_info_cards_button_background'] )
+	) {
+		$bg = $settings['td_info_cards_button_background'];
+		$r = intval( $bg['red'] ?? 0 );
+		$g = intval( $bg['green'] ?? 0 );
+		$b = intval( $bg['blue'] ?? 0 );
+		$a = floatval( $bg['alpha'] ?? 1 );
+		if ( $a > 0 ) {
+			$style = ' style="background-color: rgba(' . $r . ',' . $g . ',' . $b . ',' . $a . ');"';
+		}
+	}
+
 	$text = esc_html( $data['button_text'] );
-	return '<div class="yak-info-cards-button"><span class="button yak-fake-btn">' . $text . '</span></div>';
+	return '<div class="yak-info-cards-button"><span class="button yak-fake-btn"' . $style . '>' . $text . '</span></div>';
 	
 }

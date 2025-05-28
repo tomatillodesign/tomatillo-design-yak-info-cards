@@ -57,13 +57,31 @@ add_action( 'admin_init', 'yak_info_cards_check_acf_pro' );
 // Also check at activation
 register_activation_hook( __FILE__, 'yak_info_cards_check_acf_pro' );
 
-
-
 add_action( 'init', 'clb_custom_acf_blocks_register_acf_blocks_d3fdcc70' );
 function clb_custom_acf_blocks_register_acf_blocks_d3fdcc70() {
     register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/clb-custom-info-card' );
 }
 
+add_action( 'wp_footer', 'yak_enqueue_hyphen_js', 90 ); // Late in the footer
+function yak_enqueue_hyphen_js() {
+	echo '<script src="https://cdn.jsdelivr.net/npm/hyphen@1.10.6/patterns/en-us.min.js"></script>';
+    echo '<script src="https://cdn.jsdelivr.net/npm/hyphen@1.10.6/hyphen.min.js"></script>';
+}
+
+
+add_action( 'wp_enqueue_scripts', 'yak_info_cards_enqueue_scripts' );
+function yak_info_cards_enqueue_scripts() {
+	// Only enqueue on frontend
+	if ( is_admin() ) return;
+
+	wp_enqueue_script(
+		'yak-info-cards-js',
+		plugins_url( 'assets/yak-info-cards.js', __FILE__ ),
+		[], // dependencies like ['jquery'] if needed
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/yak-info-cards.js' ),
+		true // load in footer
+	);
+}
 
 
 
@@ -454,7 +472,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'name' => 'card_action',
                         'aria-label' => '',
                         'type' => 'button_group',
-                        'instructions' => 'Modal and Collapse cards will display the "Description" field upon clicking.',
+                        'instructions' => 'Modal cards will display the "Description" field upon clicking.',
                         'required' => 0,
                         'conditional_logic' => array(
                             array(
@@ -471,9 +489,8 @@ if( function_exists('acf_add_local_field_group') ):
                             'id' => '',
                         ),
                         'choices' => array(
-                            'default' => 'Default',
+                            'default' => 'Default Link',
                             'modal' => 'Modal (Pop-up)',
-                            'collapse' => 'Collapse',
                         ),
                         'default_value' => 'default',
                         'return_format' => 'value',

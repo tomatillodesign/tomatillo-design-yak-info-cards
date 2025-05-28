@@ -293,6 +293,9 @@
         width: 100%;
         padding-left: 2rem;
         padding-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     .yak-card.yak-info-cards-type-cover .yak-info-cards-subheading {
@@ -311,6 +314,19 @@
     .yak-info-cards-button .button {
         width: 100%;
         text-align: center;
+    }
+
+    .yak-info-cards-button .button:hover {
+        background: var(--yak-color-black) !important;
+    }
+
+
+    .yak-card.yak-card-empty-contents .yak-card-contents-wrapper {
+        display: none;
+    }
+
+    .yak-info-cards-type-photo .yak-card.yak-card-empty-contents .yak-info-cards-photo-wrapper img {
+        border-radius: var(--yak-radius);
     }
 
     
