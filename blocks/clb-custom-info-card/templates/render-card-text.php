@@ -27,6 +27,8 @@ $link_url     = $data['link_url'] ?? '';
 ob_start();
 ?>
 	<div class="yak-card yak-info-cards-type-text">
+
+	<div class="yak-card-contents-wrapper">
 		<?php echo yak_info_cards_render_heading( $heading, $settings ); ?>
 		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
 		<?php echo yak_info_cards_render_description( $description, $settings ); ?>
@@ -35,6 +37,8 @@ ob_start();
 			'button_text' => $button_text,
 			'link_url'    => $link_url,
 		], $settings ); ?>
+	</div>
+
 	</div>
 <?php
 $card_html = ob_get_clean();

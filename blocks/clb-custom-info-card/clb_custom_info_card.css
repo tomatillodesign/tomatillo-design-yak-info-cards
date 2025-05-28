@@ -48,6 +48,10 @@
     .yak-card {
         box-shadow: 0 0 12px rgba(0,0,0,.1);
         border-radius: var(--yak-radius, 3px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .yak-card-contents-wrapper {
@@ -56,6 +60,7 @@
         flex-direction: column;
         justify-content: flex-start;
         gap: 0.5rem;
+        flex-grow: 1;
     }
 
     .yak-card-contents-wrapper h2,
@@ -95,16 +100,16 @@
         font-size: var(--yak-font-sm);
     }
 
+    .yak-info-cards-description p:last-of-type {
+        margin-bottom: 0;
+    }
+
     .yak-info-cards-subheading {
         text-transform: uppercase;
         font-size: var(--yak-font-md);
         opacity: 0.67;
         text-align: center;
         line-height: var(--yak-lh-lg);
-    }
-
-    .yak-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .yak-single-info-card-outer-wrapper a .yak-card:hover {
@@ -228,6 +233,39 @@
     }
 
 
+    /* === Yak Info Cards – Video Card === */
+    .yak-card iframe,
+    .yak-card embed,
+    .yak-card video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        box-sizing: border-box;
+        border-top-left-radius: var(--yak-radius);
+        border-top-right-radius: var(--yak-radius);
+    }
+
+    .yak-info-cards-video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        border-top-left-radius: var(--yak-radius);
+        border-top-right-radius: var(--yak-radius);
+    }
+
+    .yak-info-cards-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+    
+    
     /* === Yak Info Cards – Cover Card === */
     .yak-card.yak-info-cards-type-cover {
         position: relative;
@@ -259,6 +297,20 @@
 
     .yak-card.yak-info-cards-type-cover .yak-info-cards-subheading {
         opacity: 1;
+    }
+
+
+
+    .yak-info-cards-button {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+        padding-top: 1rem;
+    }
+
+    .yak-info-cards-button .button {
+        width: 100%;
+        text-align: center;
     }
 
     

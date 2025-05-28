@@ -35,14 +35,16 @@ ob_start();
 			</div>
 		<?php endif; ?>
 
-		<?php echo yak_info_cards_render_heading( $heading, $settings ); ?>
-		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
-		<?php echo yak_info_cards_render_description( $description, $settings ); ?>
+		<div class="yak-card-contents-wrapper">
+			<?php echo yak_info_cards_render_heading( $heading, $settings ); ?>
+			<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
+			<?php echo yak_info_cards_render_description( $description, $settings ); ?>
 
-		<?php echo yak_info_cards_render_button( [
-			'button_text' => $button_text,
-			'link_url'    => $link_url,
-		], $settings ); ?>
+			<?php echo yak_info_cards_render_button( [
+				'button_text' => $button_text,
+				'link_url'    => $link_url,
+			], $settings ); ?>
+		</div>
 	</div>
 <?php
 $card_html = ob_get_clean();

@@ -33,14 +33,9 @@ function yak_info_cards_render_description( $description, array $settings ): str
 
 function yak_info_cards_render_button( array $data, array $settings ): string {
 
-	if (
-		empty( $settings['td_info_cards_include_button'] ) ||
-		empty( $data['button_text'] ) ||
-		empty( $data['link_url'] )
-	) {
-		return '';
-	}
-	$link = esc_url( $data['link_url'] );
+	if( !$settings['td_info_cards_include_button'] || !$data['button_text'] ) { return ''; }
+
 	$text = esc_html( $data['button_text'] );
-	return '<div class="yak-info-cards-button"><a class="button" href="' . $link . '">' . $text . '</a></div>';
+	return '<div class="yak-info-cards-button"><span class="button yak-fake-btn">' . $text . '</span></div>';
+	
 }
