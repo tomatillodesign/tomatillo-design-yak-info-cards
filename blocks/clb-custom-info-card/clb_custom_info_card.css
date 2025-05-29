@@ -30,7 +30,8 @@
         grid-template-columns: repeat(6, 1fr);
     }
 
-    .alignfull.yak-info-cards-group {
+    .alignfull.yak-info-cards-group,
+    .alignwide.yak-info-cards-group {
         padding-left: 2rem;
         padding-right: 2rem;
     }
@@ -52,6 +53,10 @@
         display: flex;
         flex-direction: column;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .yak-card-wrapper-link {
+        height: 100%;
     }
 
     .yak-card-contents-wrapper {
@@ -404,6 +409,41 @@
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+
+    .yak-card.yak-info-cards-type-cover {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .yak-info-cards-cover-inner {
+        transform-origin: top left;
+        will-change: transform;
+        padding: 1rem;
+    }
+
+    /* ==== MOBILE STYLES ==== */
+
+    /* Tablet: force max 2 columns */
+    @media (max-width: 959px) {
+        .yak-info-cards-group {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .alignfull.yak-info-cards-group,
+        .alignwide.yak-info-cards-group {
+            padding: 0;
+        }
+
+
+    }
+
+    /* Mobile: 1 column */
+    @media (max-width: 639px) {
+        .yak-info-cards-group {
+            grid-template-columns: 1fr;
         }
     }
 

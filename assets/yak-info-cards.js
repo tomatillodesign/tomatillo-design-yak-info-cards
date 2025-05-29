@@ -46,3 +46,78 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 });
+
+
+
+
+
+function rescaleYakCoverCard(cardEl) {
+	const content = cardEl.querySelector('.yak-info-cards-cover-inner');
+	if (!content) {
+		console.warn('[YakCoverScale] Missing .yak-info-cards-cover-inner in:', cardEl);
+		return;
+	}
+
+	// Reset scale (but preserve centering)
+	content.style.transform = 'translate(-50%, -50%) scale(1)';
+	content.style.height = 'auto';
+
+	const cardHeight = cardEl.clientHeight;
+	const contentHeight = content.scrollHeight;
+	const padding = 16; // 1rem in px
+	const maxContentHeight = cardHeight - padding * 2;
+
+	console.log('[YakCoverScale] Rescaling card:', cardEl);
+	console.log(`→ cardHeight: ${cardHeight}, contentHeight: ${contentHeight}, maxAllowed: ${maxContentHeight}`);
+
+	if (contentHeight > maxContentHeight) {
+		const scale = Math.min(maxContentHeight / contentHeight, 1);
+		console.log(`[YakCoverScale] Overflow! Applying scale(${scale.toFixed(3)})`);
+		content.style.transform = `translate(-50%, -50%) scale(${scale})`;
+		content.style.height = `${maxContentHeight}px`;
+	} else {
+		console.log('[YakCoverScale] No scaling needed.');
+	}
+}
+
+
+function debounce(fn, delay = 150) {
+	let timer;
+	return (...args) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => fn(...args), delay);
+	};
+}
+
+function initYakCoverCardScaling() {
+	console.log('[YakCoverScale] Initializing…');
+
+	const coverCards = document.querySelectorAll('.yak-card.yak-info-cards-type-cover');
+	if (!coverCards.length) {
+		console.warn('[YakCoverScale] No cover cards found.');
+		return;
+	}
+
+	const resizeAll = debounce(() => {
+		console.log('[YakCoverScale] Window resize triggered.');
+		coverCards.forEach(rescaleYakCoverCard);
+	}, 150);
+
+	const resizeObserver = new ResizeObserver(entries => {
+		console.log('[YakCoverScale] ResizeObserver: ' + entries.length + ' entries');
+		coverCards.forEach(rescaleYakCoverCard);
+	});
+
+	coverCards.forEach(card => {
+		console.log('[YakCoverScale] Setting up:', card);
+		rescaleYakCoverCard(card);
+		resizeObserver.observe(card);
+	});
+
+	window.addEventListener('resize', resizeAll);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	console.log('[YakCoverScale] DOMContentLoaded');
+	initYakCoverCardScaling();
+});
