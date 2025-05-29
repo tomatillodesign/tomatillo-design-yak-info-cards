@@ -123,7 +123,7 @@
 
     [data-yak-modal] .yak-card:hover .yak-info-cards-photo-img,
     .yak-single-info-card-outer-wrapper a .yak-card:hover .yak-info-cards-photo-img {
-        filter: brightness(0.80) contrast(1.15) saturate(1.2);
+        filter: brightness(0.75) contrast(1.15) saturate(1.1);
     }
 
     /* Shared base wrapper styles */
@@ -224,6 +224,7 @@
     .yak-info-cards-type-icon .yak-card .yak-info-cards-icon-wrapper {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     
     [data-yak-modal] .yak-card:hover,
@@ -242,8 +243,8 @@
         height: auto;
         display: block;
         box-sizing: border-box;
-        border-top-left-radius: var(--yak-radius);
-        border-top-right-radius: var(--yak-radius);
+        border-top-left-radius: var(--yak-radius, 3px);
+        border-top-right-radius: var(--yak-radius, 3px);
     }
 
     .yak-info-cards-video-wrapper {
@@ -251,8 +252,8 @@
         width: 100%;
         padding-bottom: 56.25%; /* 16:9 aspect ratio */
         overflow: hidden;
-        border-top-left-radius: var(--yak-radius);
-        border-top-right-radius: var(--yak-radius);
+        border-top-left-radius: var(--yak-radius, 3px);
+        border-top-right-radius: var(--yak-radius, 3px);
     }
 
     .yak-info-cards-video-wrapper iframe {
@@ -272,7 +273,7 @@
     }
 
     .yak-card.yak-info-cards-type-cover .yak-info-cards-overlay {
-        border-radius: var(--yak-radius);
+        border-radius: var(--yak-radius, 3px);
         position: absolute;
         top: 0;
         left: 0;
@@ -326,9 +327,24 @@
     }
 
     .yak-info-cards-type-photo .yak-card.yak-card-empty-contents .yak-info-cards-photo-wrapper img {
-        border-radius: var(--yak-radius);
+        border-radius: var(--yak-radius, 3px);
     }
 
+    /* === Single Column Horizontal === */
+
+    .yak-info-cards-cols-1.yak-info-cards-layout-horizontal .yak-card {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .yak-info-cards-cols-1.yak-info-cards-layout-horizontal .yak-info-cards-photo-wrapper {
+        height: 100%;
+    }
+
+    .yak-info-cards-cols-1.yak-info-cards-layout-horizontal .yak-info-cards-photo-wrapper img {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--yak-radius, 3px);
+    }
     
     /* === Yak Info Cards – Modal Styles === */
 
