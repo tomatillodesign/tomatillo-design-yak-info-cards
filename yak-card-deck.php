@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Info Cards
 Description: Custom block for displaying cards in a grid/deck layout. Yak theme-ready.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
-Version: 1.0.1
+Version: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
