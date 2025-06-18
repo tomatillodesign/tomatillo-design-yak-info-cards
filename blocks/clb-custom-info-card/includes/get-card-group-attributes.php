@@ -3,6 +3,7 @@
 function yak_info_cards_get_group_attributes( array $settings ): array {
 	$classes = [ 'yak-info-cards-group' ];
 	$data    = [];
+	$style   = '';
 
 	// Columns
 	if ( ! empty( $settings['td_info_cards_number_of_columns'] ) ) {
@@ -52,8 +53,30 @@ function yak_info_cards_get_group_attributes( array $settings ): array {
 		$data['yak-info-cards-heading-level'] = $heading;
 	}
 
+	// Background color (raw RGBA values from ACF)
+	if (
+		isset(
+			$settings['td_info_cards_card_background']['red'],
+			$settings['td_info_cards_card_background']['green'],
+			$settings['td_info_cards_card_background']['blue'],
+			$settings['td_info_cards_card_background']['alpha']
+		)
+	) {
+		$r = intval( $settings['td_info_cards_card_background']['red'] );
+		$g = intval( $settings['td_info_cards_card_background']['green'] );
+		$b = intval( $settings['td_info_cards_card_background']['blue'] );
+		$a = floatval( $settings['td_info_cards_card_background']['alpha'] );
+
+		// Sanity bounds
+		if ( $r >= 0 && $r <= 255 && $g >= 0 && $g <= 255 && $b >= 0 && $b <= 255 && $a >= 0 && $a <= 1 ) {
+			$classes[] = 'yak-info-cards-has-background-color';
+			$style = "--yak-info-cards-bg: rgba({$r}, {$g}, {$b}, {$a});";
+		}
+	}
+
 	return [
 		'class' => implode( ' ', $classes ),
 		'data'  => $data,
+		'style'  => $style,
 	];
 }

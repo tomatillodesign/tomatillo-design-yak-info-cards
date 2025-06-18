@@ -142,6 +142,10 @@
         background: var(--yak-color-black, #000) !important;
     }
 
+    .yak-info-cards-has-background-color .yak-card {
+        background: var(--yak-info-cards-bg);
+    }
+
     /* ----------------------------------
     5. Card Hover Effects
     ---------------------------------- */

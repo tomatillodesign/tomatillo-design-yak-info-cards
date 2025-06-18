@@ -12,6 +12,11 @@ function yak_render_card_group_block( array $block ): string {
 	$attrs       = yak_info_cards_get_group_attributes( $settings );
 	$class_attr  = esc_attr( $attrs['class'] );
 
+	// Append custom class from "Additional CSS class(es)" field
+	if ( ! empty( $block['className'] ) ) {
+		$attrs['class'] .= ' ' . sanitize_html_class( $block['className'] );
+	}
+
 	// Append align class if present
 	if ( ! empty( $block['align'] ) ) {
 		$attrs['class'] .= ' align' . $block['align'];
@@ -24,7 +29,9 @@ function yak_render_card_group_block( array $block ): string {
 	}
 
 	// Build output
-	$output = "<div class=\"{$class_attr}\"{$data_attrs}>";
+	$style_attr = ! empty( $attrs['style'] ) ? ' style="' . esc_attr( $attrs['style'] ) . '"' : '';
+	$output = "<div class=\"{$class_attr}\"{$data_attrs}{$style_attr}>";
+
 	while ( have_rows( 'td_info_cards_repeater' ) ) {
 		the_row();
 		$data = yak_get_card_data_from_row();
