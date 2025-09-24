@@ -18,34 +18,6 @@ Yak Info Cards isn't just another card plugin. It's a **comprehensive content pr
 
 ---
 
-## 🚀 **Compelling Use Cases**
-
-### **🏢 Business & Corporate**
-- **Team Member Profiles**: Professional staff directories with photos and bios
-- **Service Offerings**: Feature-rich service cards with icons and descriptions
-- **Location Showcases**: Branch offices, facilities, or event venues
-- **Product Catalogs**: E-commerce product grids with custom styling
-
-### **🎓 Educational & Non-Profit**
-- **Course Catalogs**: Program listings with detailed descriptions
-- **Faculty Directories**: Academic staff with credentials and specializations
-- **Resource Libraries**: Document collections with download links
-- **Event Calendars**: Upcoming events with registration information
-
-### **🏥 Healthcare & Professional Services**
-- **Provider Directories**: Medical professionals with specialties
-- **Treatment Options**: Service descriptions with detailed information
-- **Facility Tours**: Virtual tours of medical facilities
-- **Resource Centers**: Patient education materials and guides
-
-### **🏪 E-commerce & Retail**
-- **Product Showcases**: Featured products with custom layouts
-- **Brand Stories**: Company history and mission statements
-- **Customer Testimonials**: Social proof with photos and quotes
-- **Category Browsing**: Organized product collections
-
----
-
 ## 🎨 **Card Types & Flexibility**
 
 ### **📝 Text Cards**
