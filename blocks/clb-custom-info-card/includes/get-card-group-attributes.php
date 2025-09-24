@@ -53,6 +53,12 @@ function yak_info_cards_get_group_attributes( array $settings ): array {
 		$data['yak-info-cards-heading-level'] = $heading;
 	}
 
+	// Automatic hyphenation
+	if ( ! empty( $settings['td_info_cards_automatic_hyphenation'] ) ) {
+		$hyphenation = sanitize_html_class( $settings['td_info_cards_automatic_hyphenation'] );
+		$data['yak-info-cards-hyphenation'] = $hyphenation;
+	}
+
 	// Background color (raw RGBA values from ACF)
 	if (
 		isset(

@@ -9,20 +9,40 @@ document.addEventListener('DOMContentLoaded', () => {
 	const hyphenateText = createHyphenator(hyphenationPatternsEnUs);
 
 	const applyHyphenation = () => {
-		const cards = document.querySelectorAll('.yak-card');
-		const isMobile = window.innerWidth < 768;
+		const cardGroups = document.querySelectorAll('.yak-info-cards-group');
+		
+		cardGroups.forEach(group => {
+			const hyphenationSetting = group.getAttribute('data-yak-info-cards-hyphenation') || 'none';
+			
+			// Skip if hyphenation is disabled
+			if (hyphenationSetting === 'none') {
+				return;
+			}
+			
+			const cards = group.querySelectorAll('.yak-card');
+			const isMobile = window.innerWidth < 768;
 
-		// Force hyphenation on mobile or if any card < 400px
-		const shouldRun = isMobile || Array.from(cards).some(card => card.offsetWidth < 400);
+			// Force hyphenation on mobile or if any card < 400px
+			const shouldRun = isMobile || Array.from(cards).some(card => card.offsetWidth < 400);
 
-		if (!shouldRun) {
-			// console.log('[YakCards] Skipping hyphenation — cards are wide');
-			return;
-		}
+			if (!shouldRun) {
+				// console.log('[YakCards] Skipping hyphenation — cards are wide');
+				return;
+			}
 
-		// console.log('[YakCards] Running hyphenation');
-		cards.forEach(card => {
-			card.innerHTML = hyphenateText(card.innerHTML);
+			// console.log('[YakCards] Running hyphenation with setting:', hyphenationSetting);
+			cards.forEach(card => {
+				if (hyphenationSetting === 'title_only') {
+					// Only hyphenate titles/headings
+					const headings = card.querySelectorAll('h1, h2, h3, h4, h5, h6, .yak-card-heading');
+					headings.forEach(heading => {
+						heading.innerHTML = hyphenateText(heading.innerHTML);
+					});
+				} else if (hyphenationSetting === 'title_body') {
+					// Hyphenate everything
+					card.innerHTML = hyphenateText(card.innerHTML);
+				}
+			});
 		});
 	};
 

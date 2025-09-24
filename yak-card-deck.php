@@ -424,6 +424,22 @@ if( function_exists('acf_add_local_field_group') ):
                         'return_format' => 'value',
                         'ui' => 1,
                     ),
+                    array(
+                        'key' => 'td_info_cards_automatic_hyphenation',
+                        'label' => 'Automatic Hyphenation',
+                        'name' => 'td_info_cards_automatic_hyphenation',
+                        'type' => 'button_group',
+                        'instructions' => 'Controls automatic text hyphenation for better text flow.',
+                        'choices' => array(
+                            'none' => 'None',
+                            'title_only' => 'Title Only',
+                            'title_body' => 'Title + Body',
+                        ),
+                        'default_value' => 'none',
+                        'return_format' => 'value',
+                        'allow_null' => 0,
+                        'layout' => 'horizontal',
+                    ),
                 ),
             ),
             array(

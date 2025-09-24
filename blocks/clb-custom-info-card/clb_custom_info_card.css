@@ -87,9 +87,12 @@
         margin: 0;
     }
 
-    .yak-info-cards-heading,
-    .yak-info-cards-subheading,
-    .yak-info-cards-description {
+    /* Hyphenation settings - conditional based on data attribute */
+    .yak-info-cards-group[data-yak-info-cards-hyphenation="title_only"] .yak-info-cards-heading,
+    .yak-info-cards-group[data-yak-info-cards-hyphenation="title_only"] .yak-info-cards-subheading,
+    .yak-info-cards-group[data-yak-info-cards-hyphenation="title_body"] .yak-info-cards-heading,
+    .yak-info-cards-group[data-yak-info-cards-hyphenation="title_body"] .yak-info-cards-subheading,
+    .yak-info-cards-group[data-yak-info-cards-hyphenation="title_body"] .yak-info-cards-description {
         hyphens: auto;
         overflow-wrap: break-word;
         word-break: normal;
