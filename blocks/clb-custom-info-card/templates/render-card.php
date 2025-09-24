@@ -1,13 +1,12 @@
 <?php
 
-function yak_render_card( array $card, array $settings = [] ): string {
-    $card['type'] = $card['type'] ?? $settings['td_info_cards_type'] ?? 'default';
-	$heading     = esc_html( $card['heading'] ?? '' );
-	$subheading  = esc_html( $card['subheading'] ?? '' );
-	$button      = esc_html( $card['button_text'] ?? '' );
-	$link        = esc_url( $card['link'] ?? '#' );
-	$action_type = sanitize_html_class( $card['action'] ?? 'default' );
-
+function yak_render_card( array $card, array $settings = array() ): string {
+	$card['type'] = $card['type'] ?? $settings['td_info_cards_type'] ?? 'default';
+	$heading      = esc_html( $card['heading'] ?? '' );
+	$subheading   = esc_html( $card['subheading'] ?? '' );
+	$button       = esc_html( $card['button_text'] ?? '' );
+	$link         = esc_url( $card['link'] ?? '#' );
+	$action_type  = sanitize_html_class( $card['action'] ?? 'default' );
 
 	$image_html = '';
 	if ( ! empty( $card['image_id'] ) ) {
@@ -15,7 +14,7 @@ function yak_render_card( array $card, array $settings = [] ): string {
 	}
 
 	$heading_level = $settings['td_info_cards_heading_level'] ?? 'h3';
-	$heading_level = in_array( $heading_level, [ 'h2', 'h3', 'h4' ], true ) ? $heading_level : 'h3';
+	$heading_level = in_array( $heading_level, array( 'h2', 'h3', 'h4' ), true ) ? $heading_level : 'h3';
 
 	$heading_html = $heading ? "<{$heading_level} class=\"yak-card-heading\">{$heading}</{$heading_level}>" : '';
 
@@ -34,38 +33,53 @@ function yak_render_card( array $card, array $settings = [] ): string {
 		$button_html = '<div class="yak-card-button"><a class="button" href="' . $link . '">' . $button . '</a></div>';
 	}
 
-    $type = sanitize_html_class( $card['type'] ?? 'default' );
+	$type = sanitize_html_class( $card['type'] ?? 'default' );
 
 	// Modular rendering switch
 	switch ( $type ) {
 		case 'icon':
-			return yak_info_cards_load_template( 'render-card-icon.php', [
-				...$card,
-				'settings' => $settings,
-			] );
+			return yak_info_cards_load_template(
+				'render-card-icon.php',
+				array(
+					...$card,
+					'settings' => $settings,
+				)
+			);
 		case 'photo':
-			return yak_info_cards_load_template( 'render-card-photo.php', [
-				...$card,
-				'settings' => $settings,
-			] );
+			return yak_info_cards_load_template(
+				'render-card-photo.php',
+				array(
+					...$card,
+					'settings' => $settings,
+				)
+			);
 			break;
 		case 'cover':
-			return yak_info_cards_load_template( 'render-card-cover.php', [
-				...$card,
-				'settings' => $settings,
-			] );
+			return yak_info_cards_load_template(
+				'render-card-cover.php',
+				array(
+					...$card,
+					'settings' => $settings,
+				)
+			);
 			break;
-        case 'text':
-            return yak_info_cards_load_template( 'render-card-text.php', [
-                ...$card,
-                'settings' => $settings,
-            ] );
-            break;
+		case 'text':
+			return yak_info_cards_load_template(
+				'render-card-text.php',
+				array(
+					...$card,
+					'settings' => $settings,
+				)
+			);
+			break;
 		case 'video':
-			return yak_info_cards_load_template( 'render-card-video.php', [
-                ...$card,
-                'settings' => $settings,
-            ] );
+			return yak_info_cards_load_template(
+				'render-card-video.php',
+				array(
+					...$card,
+					'settings' => $settings,
+				)
+			);
 			break;
 	}
 

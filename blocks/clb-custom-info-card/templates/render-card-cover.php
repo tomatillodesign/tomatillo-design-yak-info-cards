@@ -14,27 +14,34 @@
  * - settings (array of group-level settings)
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$settings       = $data['settings'] ?? [];
-$type           = $type ?? 'cover';
+$settings = $data['settings'] ?? array();
+$type     = $type ?? 'cover';
 
-$heading        = $data['heading'] ?? '';
-$subheading     = $data['subheading'] ?? '';
-$description    = $data['description'] ?? '';
-$button_text    = $data['button_text'] ?? '';
-$link_url       = $data['link_url'] ?? '';
-$image_id       = $data['image_id'] ?? 0;
+$heading             = $data['heading'] ?? '';
+$subheading          = $data['subheading'] ?? '';
+$description         = $data['description'] ?? '';
+$button_text         = $data['button_text'] ?? '';
+$link_url            = $data['link_url'] ?? '';
+$image_id            = $data['image_id'] ?? 0;
 $overlay_opacity_raw = isset( $data['cover_opacity'] ) ? floatval( $data['cover_opacity'] ) : 40;
-$overlay_opacity = $overlay_opacity_raw / 100;
+$overlay_opacity     = $overlay_opacity_raw / 100;
 
 // Fallback image output
 $image_html = '';
 if ( $image_id ) {
-	$image_html = wp_get_attachment_image( $image_id, 'large', false, [
-		'class' => 'yak-info-cards-cover-img',
-		'alt'   => esc_attr( $heading ),
-	] );
+	$image_html = wp_get_attachment_image(
+		$image_id,
+		'large',
+		false,
+		array(
+			'class' => 'yak-info-cards-cover-img',
+			'alt'   => esc_attr( $heading ),
+		)
+	);
 }
 
 // Inline overlay style
@@ -56,10 +63,15 @@ ob_start();
 			<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
 			<?php echo yak_info_cards_render_description( $description, $settings ); ?>
 
-			<?php echo yak_info_cards_render_button( [
-				'button_text' => $button_text,
-				'link_url'    => $link_url,
-			], $settings ); ?>
+			<?php
+			echo yak_info_cards_render_button(
+				array(
+					'button_text' => $button_text,
+					'link_url'    => $link_url,
+				),
+				$settings
+			);
+			?>
 		</div>
 	</div>
 <?php

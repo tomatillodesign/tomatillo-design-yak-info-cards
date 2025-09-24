@@ -14,25 +14,32 @@
  * - settings (array of group-level settings)
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$settings     = $data['settings'] ?? [];
-$type         = $type ?? 'photo';
+$settings = $data['settings'] ?? array();
+$type     = $type ?? 'photo';
 
-$heading      = $data['heading'] ?? '';
-$subheading   = $data['subheading'] ?? '';
-$description  = $data['description'] ?? '';
-$button_text  = $data['button_text'] ?? '';
-$link_url     = $data['link_url'] ?? '';
-$image_id     = $data['image_id'] ?? 0;
+$heading     = $data['heading'] ?? '';
+$subheading  = $data['subheading'] ?? '';
+$description = $data['description'] ?? '';
+$button_text = $data['button_text'] ?? '';
+$link_url    = $data['link_url'] ?? '';
+$image_id    = $data['image_id'] ?? 0;
 
 // Fallback image output
 $image_html = '';
 if ( $image_id ) {
-	$image_html = wp_get_attachment_image( $image_id, 'large', false, [
-		'class' => 'yak-info-cards-photo-img',
-		'alt'   => esc_attr( $heading ),
-	] );
+	$image_html = wp_get_attachment_image(
+		$image_id,
+		'large',
+		false,
+		array(
+			'class' => 'yak-info-cards-photo-img',
+			'alt'   => esc_attr( $heading ),
+		)
+	);
 }
 
 // Inner card content (HTML only — will be wrapped next)
@@ -51,10 +58,15 @@ ob_start();
 		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
 		<?php echo yak_info_cards_render_description( $description, $settings ); ?>
 
-		<?php echo yak_info_cards_render_button( [
-			'button_text' => $button_text,
-			'link_url'    => $link_url,
-		], $settings ); ?>
+		<?php
+		echo yak_info_cards_render_button(
+			array(
+				'button_text' => $button_text,
+				'link_url'    => $link_url,
+			),
+			$settings
+		);
+		?>
 		</div>
 
 	</div>

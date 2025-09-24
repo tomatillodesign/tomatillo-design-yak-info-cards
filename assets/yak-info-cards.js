@@ -1,143 +1,165 @@
+/**
+ * Yak Info Cards JavaScript functionality.
+ *
+ * Handles hyphenation, cover card scaling, and empty content detection.
+ *
+ * @package YakInfoCards
+ */
 
-
-document.addEventListener('DOMContentLoaded', () => {
-	if (typeof createHyphenator === 'undefined' || typeof hyphenationPatternsEnUs === 'undefined') {
-		// console.warn('[YakCards] Hyphenation scripts not loaded');
+document.addEventListener( 'DOMContentLoaded', () => {
+	if ( typeof createHyphenator === 'undefined' || 
+		typeof hyphenationPatternsEnUs === 'undefined' ) {
+		// console.warn('[YakCards] Hyphenation scripts not loaded.');
 		return;
 	}
 
-	const hyphenateText = createHyphenator(hyphenationPatternsEnUs);
+	const hyphenateText = createHyphenator( hyphenationPatternsEnUs );
 
 	const applyHyphenation = () => {
-		const cardGroups = document.querySelectorAll('.yak-info-cards-group');
-		
-		cardGroups.forEach(group => {
-			const hyphenationSetting = group.getAttribute('data-yak-info-cards-hyphenation') || 'none';
-			
-			// Skip if hyphenation is disabled
-			if (hyphenationSetting === 'none') {
+		const cardGroups = document.querySelectorAll( '.yak-info-cards-group' );
+
+		cardGroups.forEach( group => {
+			const hyphenationSetting = group.getAttribute( 
+				'data-yak-info-cards-hyphenation' 
+			) || 'none';
+
+			// Skip if hyphenation is disabled.
+			if ( hyphenationSetting === 'none' ) {
 				return;
 			}
-			
-			const cards = group.querySelectorAll('.yak-card');
+
+			const cards = group.querySelectorAll( '.yak-card' );
 			const isMobile = window.innerWidth < 768;
 
-			// Force hyphenation on mobile or if any card < 400px
-			const shouldRun = isMobile || Array.from(cards).some(card => card.offsetWidth < 400);
+			// Force hyphenation on mobile or if any card < 400px.
+			const shouldRun = isMobile || Array.from( cards ).some( 
+				card => card.offsetWidth < 400 
+			);
 
-			if (!shouldRun) {
-				// console.log('[YakCards] Skipping hyphenation — cards are wide');
+			if ( ! shouldRun ) {
+				// console.log('[YakCards] Skipping hyphenation — cards are wide.');
 				return;
 			}
 
 			// console.log('[YakCards] Running hyphenation with setting:', hyphenationSetting);
-			cards.forEach(card => {
-				if (hyphenationSetting === 'title_only') {
-					// Only hyphenate titles/headings
-					const headings = card.querySelectorAll('h1, h2, h3, h4, h5, h6, .yak-card-heading');
-					headings.forEach(heading => {
-						heading.innerHTML = hyphenateText(heading.innerHTML);
-					});
-				} else if (hyphenationSetting === 'title_body') {
-					// Hyphenate everything
-					card.innerHTML = hyphenateText(card.innerHTML);
+			cards.forEach( card => {
+				if ( hyphenationSetting === 'title_only' ) {
+					// Only hyphenate titles/headings.
+					const headings = card.querySelectorAll( 
+						'h1, h2, h3, h4, h5, h6, .yak-card-heading' 
+					);
+					headings.forEach( heading => {
+						heading.innerHTML = hyphenateText( heading.innerHTML );
+					} );
+				} else if ( hyphenationSetting === 'title_body' ) {
+					// Hyphenate everything.
+					card.innerHTML = hyphenateText( card.innerHTML );
 				}
-			});
-		});
+			} );
+		} );
 	};
 
-	// Debounce helper
+	// Debounce helper.
 	let resizeTimeout;
-	window.addEventListener('resize', () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(applyHyphenation, 200);
-	});
+	window.addEventListener( 'resize', () => {
+		clearTimeout( resizeTimeout );
+		resizeTimeout = setTimeout( applyHyphenation, 200 );
+	} );
 
-	// Initial run
+	// Initial run.
 	applyHyphenation();
-});
+} );
 
-
-document.addEventListener('DOMContentLoaded', function () {
-	document.querySelectorAll('.yak-card').forEach(card => {
-		const contents = card.querySelector('.yak-card-contents-wrapper');
-		if (contents && !contents.textContent.trim()) {
-			card.classList.add('yak-card-empty-contents');
+document.addEventListener( 'DOMContentLoaded', function() {
+	document.querySelectorAll( '.yak-card' ).forEach( card => {
+		const contents = card.querySelector( '.yak-card-contents-wrapper' );
+		if ( contents && ! contents.textContent.trim() ) {
+			card.classList.add( 'yak-card-empty-contents' );
 		}
-	});
-});
+	} );
+} );
 
-
-
-
-
-function rescaleYakCoverCard(cardEl) {
-	const content = cardEl.querySelector('.yak-info-cards-cover-inner');
-	if (!content) {
-		console.warn('[YakCoverScale] Missing .yak-info-cards-cover-inner in:', cardEl);
+/**
+ * Rescale cover card content to fit within card bounds.
+ *
+ * @param {Element} cardEl The card element to rescale.
+ */
+function rescaleYakCoverCard( cardEl ) {
+	const content = cardEl.querySelector( '.yak-info-cards-cover-inner' );
+	if ( ! content ) {
+		// console.warn( '[YakCoverScale] Missing .yak-info-cards-cover-inner in:', cardEl );
 		return;
 	}
 
-	// Reset scale (but preserve centering)
+	// Reset scale (but preserve centering).
 	content.style.transform = 'translate(-50%, -50%) scale(1)';
 	content.style.height = 'auto';
 
 	const cardHeight = cardEl.clientHeight;
 	const contentHeight = content.scrollHeight;
-	const padding = 16; // 1rem in px
+	const padding = 16; // 1rem in px.
 	const maxContentHeight = cardHeight - padding * 2;
 
-	console.log('[YakCoverScale] Rescaling card:', cardEl);
-	console.log(`→ cardHeight: ${cardHeight}, contentHeight: ${contentHeight}, maxAllowed: ${maxContentHeight}`);
+	// console.log( '[YakCoverScale] Rescaling card:', cardEl );
+	// console.log( `→ cardHeight: ${cardHeight}, contentHeight: ${contentHeight}, maxAllowed: ${maxContentHeight}` );
 
-	if (contentHeight > maxContentHeight) {
-		const scale = Math.min(maxContentHeight / contentHeight, 1);
-		console.log(`[YakCoverScale] Overflow! Applying scale(${scale.toFixed(3)})`);
+	if ( contentHeight > maxContentHeight ) {
+		const scale = Math.min( maxContentHeight / contentHeight, 1 );
+		// console.log( `[YakCoverScale] Overflow! Applying scale(${scale.toFixed( 3 )})` );
 		content.style.transform = `translate(-50%, -50%) scale(${scale})`;
 		content.style.height = `${maxContentHeight}px`;
 	} else {
-		console.log('[YakCoverScale] No scaling needed.');
+		// console.log( '[YakCoverScale] No scaling needed.' );
 	}
 }
 
-
-function debounce(fn, delay = 150) {
+/**
+ * Debounce function to limit function calls.
+ *
+ * @param {Function} fn Function to debounce.
+ * @param {number} delay Delay in milliseconds.
+ * @return {Function} Debounced function.
+ */
+function debounce( fn, delay = 150 ) {
 	let timer;
-	return (...args) => {
-		clearTimeout(timer);
-		timer = setTimeout(() => fn(...args), delay);
+	return ( ...args ) => {
+		clearTimeout( timer );
+		timer = setTimeout( () => fn( ...args ), delay );
 	};
 }
 
+/**
+ * Initialize cover card scaling functionality.
+ */
 function initYakCoverCardScaling() {
-	console.log('[YakCoverScale] Initializing…');
+	// console.log( '[YakCoverScale] Initializing…' );
 
-	const coverCards = document.querySelectorAll('.yak-card.yak-info-cards-type-cover');
-	if (!coverCards.length) {
-		console.warn('[YakCoverScale] No cover cards found.');
+	const coverCards = document.querySelectorAll( '.yak-card.yak-info-cards-type-cover' );
+	if ( ! coverCards.length ) {
+		// console.warn( '[YakCoverScale] No cover cards found.' );
 		return;
 	}
 
-	const resizeAll = debounce(() => {
-		console.log('[YakCoverScale] Window resize triggered.');
-		coverCards.forEach(rescaleYakCoverCard);
-	}, 150);
+	const resizeAll = debounce( () => {
+		// console.log( '[YakCoverScale] Window resize triggered.' );
+		coverCards.forEach( rescaleYakCoverCard );
+	}, 150 );
 
-	const resizeObserver = new ResizeObserver(entries => {
-		console.log('[YakCoverScale] ResizeObserver: ' + entries.length + ' entries');
-		coverCards.forEach(rescaleYakCoverCard);
-	});
+	const resizeObserver = new ResizeObserver( entries => {
+		// console.log( '[YakCoverScale] ResizeObserver: ' + entries.length + ' entries' );
+		coverCards.forEach( rescaleYakCoverCard );
+	} );
 
-	coverCards.forEach(card => {
-		console.log('[YakCoverScale] Setting up:', card);
-		rescaleYakCoverCard(card);
-		resizeObserver.observe(card);
-	});
+	coverCards.forEach( card => {
+		// console.log( '[YakCoverScale] Setting up:', card );
+		rescaleYakCoverCard( card );
+		resizeObserver.observe( card );
+	} );
 
-	window.addEventListener('resize', resizeAll);
+	window.addEventListener( 'resize', resizeAll );
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	console.log('[YakCoverScale] DOMContentLoaded');
+document.addEventListener( 'DOMContentLoaded', () => {
+	// console.log( '[YakCoverScale] DOMContentLoaded' );
 	initYakCoverCardScaling();
-});
+} );

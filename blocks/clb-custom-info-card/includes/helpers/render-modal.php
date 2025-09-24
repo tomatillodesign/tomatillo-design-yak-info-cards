@@ -8,9 +8,11 @@
  * @return string           Full modal HTML.
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-function yak_info_cards_render_modal( array $data, array $settings = [], string $uid = '' ): string {
+function yak_info_cards_render_modal( array $data, array $settings = array(), string $uid = '' ): string {
 	if ( empty( $uid ) ) {
 		$uid = uniqid( 'yak-modal-' ); // Fallback (shouldn't happen)
 	}

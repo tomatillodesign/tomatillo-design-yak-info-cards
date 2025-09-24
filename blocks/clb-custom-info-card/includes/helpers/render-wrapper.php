@@ -10,9 +10,7 @@
  * @param array  $settings Block-level settings.
  * @return string          Full card markup with proper outer wrapper.
  */
-
- 
-function yak_info_cards_render_wrapper( string $content, array $data, array $settings = [], string $uid = '' ): string {
+function yak_info_cards_render_wrapper( string $content, array $data, array $settings = array(), string $uid = '' ): string {
 	if ( empty( $uid ) ) {
 		$uid = uniqid( 'yak-card-' );
 	}
@@ -23,7 +21,7 @@ function yak_info_cards_render_wrapper( string $content, array $data, array $set
 	$type_class = 'yak-info-cards-type-' . sanitize_html_class( $data['type'] ?? 'default' );
 
 	// Base classes
-	$classes = [ 'yak-card-wrapper-link', $type_class, 'yak-info-cards-action-' . $action ];
+	$classes = array( 'yak-card-wrapper-link', $type_class, 'yak-info-cards-action-' . $action );
 
 	// Build appropriate inner wrapper
 	switch ( $action ) {

@@ -12,16 +12,18 @@
  * - settings (array of group-level settings)
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$settings     = $data['settings'] ?? [];
-$type         = $type ?? 'text';
+$settings = $data['settings'] ?? array();
+$type     = $type ?? 'text';
 
-$heading      = $data['heading'] ?? '';
-$subheading   = $data['subheading'] ?? '';
-$description  = $data['description'] ?? '';
-$button_text  = $data['button_text'] ?? '';
-$link_url     = $data['link_url'] ?? '';
+$heading     = $data['heading'] ?? '';
+$subheading  = $data['subheading'] ?? '';
+$description = $data['description'] ?? '';
+$button_text = $data['button_text'] ?? '';
+$link_url    = $data['link_url'] ?? '';
 
 // Inner card content (HTML only — will be wrapped next)
 ob_start();
@@ -33,10 +35,15 @@ ob_start();
 		<?php echo yak_info_cards_render_subheading( $subheading, $settings ); ?>
 		<?php echo yak_info_cards_render_description( $description, $settings ); ?>
 
-		<?php echo yak_info_cards_render_button( [
-			'button_text' => $button_text,
-			'link_url'    => $link_url,
-		], $settings ); ?>
+		<?php
+		echo yak_info_cards_render_button(
+			array(
+				'button_text' => $button_text,
+				'link_url'    => $link_url,
+			),
+			$settings
+		);
+		?>
 	</div>
 
 	</div>

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // -----------------------------------------------------------------------------
 // 🧩 Universal Template Loader (safe version — no extract)
 // -----------------------------------------------------------------------------
-function yak_info_cards_load_template( string $filename, array $data = [] ): string {
+function yak_info_cards_load_template( string $filename, array $data = array() ): string {
 	$path = plugin_dir_path( __FILE__ ) . '../templates/' . $filename;
 
 	if ( ! file_exists( $path ) ) {
@@ -46,5 +46,3 @@ require_once plugin_dir_path( __FILE__ ) . '../templates/render-card.php';
 // require_once plugin_dir_path( __FILE__ ) . '../templates/render-card-photo.php';
 // require_once plugin_dir_path( __FILE__ ) . '../templates/render-card-cover.php';
 // require_once plugin_dir_path( __FILE__ ) . '../templates/render-card-video.php';
-
-
