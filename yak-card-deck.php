@@ -7,18 +7,10 @@
  * Version: 1.1
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @package YakInfoCards
  */
 
-
-
-// Examples below!
-// See documentation:
-// https://www.advancedcustomfields.com/resources/blocks/
-// https://www.advancedcustomfields.com/resources/acf_register_block_type/
-//
-// IMPORTANT: Remember to create your own custom fields in ACF and set them to the correct Block.
-// See the attached ACF .json for getting started (import this into ACF using the ACF-->Tools).
-//
 
 
 if ( ! defined( 'ABSPATH' ) ) {
