@@ -4,7 +4,7 @@ Plugin Name: Tomatillo Design ~ Info Cards
 Description: Custom block for displaying cards in a grid/deck layout. Yak theme-ready.
 Plugin URI: https://github.com/tomatillodesign/yak-card-deck
 Author: Tomatillo Design
-Version: 1.0.2
+Version: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -620,6 +620,7 @@ if( function_exists('acf_add_local_field_group') ):
                                 'duotone' => 'Classic Duotone',
                                 'sharp' => 'Sharp',
                                 'sharp-duotone' => 'Sharp Duotone',
+                                'custom' => 'Custom',
                             ),
                             'default_value' => 'classic',
                             'return_format' => 'value',
@@ -644,6 +645,11 @@ if( function_exists('acf_add_local_field_group') ):
                                     'field' => 'field_637e271af8dd7',
                                     'operator' => '==',
                                     'value' => 'Icon',
+                                ),
+                                array(
+                                    'field' => 'field_637e3ccc45cbf',
+                                    'operator' => '!=',
+                                    'value' => 'custom',
                                 ),
                             ),
                         ),
@@ -683,6 +689,11 @@ if( function_exists('acf_add_local_field_group') ):
                                     'operator' => '==',
                                     'value' => 'Icon',
                                 ),
+                                array(
+                                    'field' => 'field_637e3ccc45cbf',
+                                    'operator' => '!=',
+                                    'value' => 'custom',
+                                ),
                             ),
                         ),
                         'wrapper' => array(
@@ -694,6 +705,40 @@ if( function_exists('acf_add_local_field_group') ):
                         'maxlength' => '',
                         'placeholder' => '',
                         'prepend' => 'fa-',
+                        'append' => '',
+                        'parent_repeater' => 'field_637e2751859e3',
+                    ),
+                    array(
+                        'key' => 'field_637e3cf745cc1',
+                        'label' => 'Custom Icon Code',
+                        'name' => 'card_custom_icon_code',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => 'Enter the complete Font Awesome icon code from the Font Awesome website. Include all classes inside quotes, e.g. "fa-jelly fa-regular fa-house".',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_637e271af8dd7',
+                                    'operator' => '==',
+                                    'value' => 'Icon',
+                                ),
+                                array(
+                                    'field' => 'field_637e3ccc45cbf',
+                                    'operator' => '==',
+                                    'value' => 'custom',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => 'fa-jelly fa-regular fa-house',
+                        'prepend' => '',
                         'append' => '',
                         'parent_repeater' => 'field_637e2751859e3',
                     ),

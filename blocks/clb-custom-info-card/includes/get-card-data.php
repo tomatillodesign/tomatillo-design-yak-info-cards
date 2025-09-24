@@ -14,6 +14,7 @@ function yak_get_card_data_from_row(): array {
 		'icon_style' => 'fa-' . get_sub_field( 'card_icon_style' ),
 		'icon_type'  => get_sub_field( 'card_icon_type' ),
 		'icon_name'  => get_sub_field( 'card_icon' ),
+		'custom_icon_code' => get_sub_field( 'card_custom_icon_code' ),
 		'icon_size'  => get_field( 'td_info_cards_icon_size' ), // from group
 	];
 }
