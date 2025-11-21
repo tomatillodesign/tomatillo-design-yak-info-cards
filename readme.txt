@@ -4,7 +4,7 @@ Tags: custom block, ACF block, info cards, grid layout, Gutenberg, responsive, h
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,9 @@ Professional, flexible info card system for WordPress with advanced customizatio
 **Advanced Styling:**
 * Color contrast detection for optimal readability
 * Custom Font Awesome icon support with custom code input
+* Duotone icon customization with progressive disclosure interface
+* Single primary color picker with optional accent color toggle
+* Custom opacity controls (0-100) with Font Awesome default fallbacks
 * Responsive cover card scaling with intelligent content fitting
 * Flexible layout options with multiple alignment choices
 * CSS custom properties for easy theme integration
@@ -102,6 +105,11 @@ Professional, flexible info card system for WordPress with advanced customizatio
 **Advanced Features:**
 * **Hyphenation Control**: Set automatic hyphenation to None, Title Only, or Title + Body
 * **Custom Icons**: Use any Font Awesome icon with custom code input
+* **Duotone Icons**: Progressive disclosure interface for duotone icon customization
+  * Single primary color picker (defaults to black)
+  * Optional accent color toggle for secondary color
+  * Custom opacity toggle with number inputs (0-100)
+  * Automatic Font Awesome defaults when custom opacity disabled
 * **Color Contrast**: Automatic detection ensures readable text colors
 * **Responsive Scaling**: Cover cards automatically scale content to fit
 
@@ -143,6 +151,16 @@ Yes! The plugin uses a modular template system. You can add new card types by cr
 8. **Mobile View**: Responsive design that adapts to any screen size
 
 == Changelog ==
+
+= 1.1.1 =
+* Improved duotone icon color logic with progressive disclosure
+* Replaced 4 always-visible fields with single primary color picker (defaults to black)
+* Added accent color toggle to conditionally show secondary color picker
+* Added custom opacity toggle to unlock opacity controls
+* Converted opacity fields from select dropdowns to number inputs (0-100)
+* Secondary color automatically matches primary color at 40% opacity when accent not enabled
+* Always applies Font Awesome default opacity values (100% primary, 40% secondary) when custom opacity disabled
+* Maintains full backward compatibility with existing cards
 
 = 1.1 =
 * Added custom Font Awesome icon support with custom code input

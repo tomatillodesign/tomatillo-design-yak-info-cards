@@ -30,7 +30,7 @@ Image-focused layouts with overlay text, custom positioning, and responsive scal
 Video content with custom thumbnails, play buttons, and modal or embedded playback.
 
 ### **🎯 Icon Cards**
-Font Awesome integration with custom icon support, perfect for feature highlights.
+Font Awesome integration with custom icon support, perfect for feature highlights. Includes advanced duotone icon customization with progressive disclosure - start with a single primary color, optionally add an accent color, and customize opacity values when needed.
 
 ### **🖼️ Cover Cards**
 Full-cover layouts with intelligent text scaling and overlay content positioning.
@@ -51,6 +51,12 @@ Organized collections with consistent styling and flexible grid layouts.
 ### **🎨 Advanced Styling**
 - **Color Contrast Detection**: Automatically ensures readable text colors
 - **Custom Icon Support**: Use any Font Awesome icon with custom code
+- **Duotone Icon Customization**: Progressive disclosure interface for duotone icons
+  - Single primary color picker (defaults to black)
+  - Optional accent color toggle for secondary color
+  - Custom opacity toggle with number inputs (0-100)
+  - Automatic Font Awesome defaults (100% primary, 40% secondary) when custom opacity disabled
+  - Secondary color automatically matches primary at 40% opacity when accent not enabled
 - **Responsive Scaling**: Cover cards automatically scale content to fit
 - **Flexible Layouts**: Multiple alignment and spacing options
 
