@@ -4,7 +4,7 @@
  * Description: Custom block for displaying cards in a grid/deck layout. Yak theme-ready.
  * Plugin URI: https://github.com/tomatillodesign/yak-card-deck
  * Author: Tomatillo Design
- * Version: 1.1
+ * Version: 1.1.1
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -767,6 +767,312 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 							'placeholder'       => 'fa-jelly fa-regular fa-house',
 							'prepend'           => '',
 							'append'            => '',
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_primary_color',
+							'label'             => 'Duotone Primary Color',
+							'name'              => 'card_duotone_primary_color',
+							'aria-label'        => '',
+							'type'              => 'color_picker',
+							'instructions'      => 'Set the primary color for duotone icons. Defaults to black if not set.',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => 'var(--yak-color-black, #000000)',
+							'enable_opacity'    => 0,
+							'return_format'     => 'string',
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_use_accent_color',
+							'label'             => 'Use Accent Color',
+							'name'              => 'card_duotone_use_accent_color',
+							'aria-label'        => '',
+							'type'              => 'true_false',
+							'instructions'      => 'Enable to add a secondary accent color to the duotone icon.',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'message'           => '',
+							'default_value'     => 0,
+							'ui_on_text'        => '',
+							'ui_off_text'       => '',
+							'ui'                => 1,
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_secondary_color',
+							'label'             => 'Duotone Accent Color',
+							'name'              => 'card_duotone_secondary_color',
+							'aria-label'        => '',
+							'type'              => 'color_picker',
+							'instructions'      => 'Set the accent color for duotone icons.',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_accent_color',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_accent_color',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => '',
+							'enable_opacity'    => 0,
+							'return_format'     => 'string',
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_use_custom_opacity',
+							'label'             => 'Use Custom Opacity',
+							'name'              => 'card_duotone_use_custom_opacity',
+							'aria-label'        => '',
+							'type'              => 'true_false',
+							'instructions'      => 'Enable to customize opacity values. When disabled, Font Awesome defaults are used (100% primary, 40% secondary).',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'message'           => '',
+							'default_value'     => 0,
+							'ui_on_text'        => '',
+							'ui_off_text'       => '',
+							'ui'                => 1,
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_primary_opacity',
+							'label'             => 'Duotone Primary Opacity',
+							'name'              => 'card_duotone_primary_opacity',
+							'aria-label'        => '',
+							'type'              => 'number',
+							'instructions'      => 'Set the primary layer opacity (0-100).',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_custom_opacity',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_custom_opacity',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => 100,
+							'min'               => 0,
+							'max'               => 100,
+							'placeholder'       => '',
+							'step'              => 1,
+							'prepend'           => '',
+							'append'            => '%',
+							'parent_repeater'   => 'field_637e2751859e3',
+						),
+						array(
+							'key'               => 'field_duotone_secondary_opacity',
+							'label'             => 'Duotone Secondary Opacity',
+							'name'              => 'card_duotone_secondary_opacity',
+							'aria-label'        => '',
+							'type'              => 'number',
+							'instructions'      => 'Set the secondary layer opacity (0-100). Only applies when accent color is enabled.',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_custom_opacity',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+								array(
+									array(
+										'field'    => 'field_637e271af8dd7',
+										'operator' => '==',
+										'value'    => 'Icon',
+									),
+									array(
+										'field'    => 'field_637e3ccc45cbf',
+										'operator' => '==',
+										'value'    => 'sharp-duotone',
+									),
+									array(
+										'field'    => 'field_duotone_use_custom_opacity',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'default_value'     => 40,
+							'min'               => 0,
+							'max'               => 100,
+							'placeholder'       => '',
+							'step'              => 1,
+							'prepend'           => '',
+							'append'            => '%',
 							'parent_repeater'   => 'field_637e2751859e3',
 						),
 						array(
